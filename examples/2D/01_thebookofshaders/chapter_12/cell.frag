@@ -55,13 +55,13 @@ void main(void) {
         st.x -= (u_resolution.x*.5-u_resolution.y*.5)/u_resolution.y;
     }
 
-	st -= .5;
-	st *= .7;
+	st -= sin(u_time);
+	st *= .7;//sin(u_time);
 	vec2 F = cellular2x2(st*40.*(.1+1.0-dot(st,st)*5.));
 
 	float facets = 0.1+(F.y-F.x);
 	float dots = smoothstep(0.05, 0.1, F.x);
 	float n = facets * dots;
-	n = step(.2,facets)*dots;
+	n = step(.3,facets)*dots;
 	gl_FragColor = vec4(n, n, n, 1.0);
 }

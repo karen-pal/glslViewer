@@ -7,6 +7,7 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
+uniform float u_time;
 
 #include "../lib/fill.glsl"
 #include "../lib/circleSDF.glsl"

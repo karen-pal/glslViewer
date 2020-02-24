@@ -1,2 +1,2 @@
 all:
-	glslViewer score.frag -p 9996 -l
+	glslViewer score.frag -p 8000 -l

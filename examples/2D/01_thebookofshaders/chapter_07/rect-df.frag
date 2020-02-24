@@ -21,10 +21,12 @@ void main(){
   // d = length( max(abs(st)-.3,0.) );
 
   // Visualize the distance field
-  gl_FragColor = vec4(vec3(fract(d*10.0)),1.0);
+  float f =step(.3,d) * step(d*abs(sin(u_time)*2.),.4);
+  float f2 = fract(d*10.0*u_time);
+  gl_FragColor = vec4(vec3(fract(d*10.0*u_time)),1.0);
 
   // Drawing with the distance field
   // gl_FragColor = vec4(vec3( step(.3,d) ),1.0);
-  // gl_FragColor = vec4(vec3( step(.3,d) * step(d,.4)),1.0);
+  // gl_FragColor = vec4(vec3( step(.3,d) * step(d,-4)),1.0);
   // gl_FragColor = vec4(vec3( smoothstep(.3,.4,d)* smoothstep(.6,.5,d)) ,1.0);
 }

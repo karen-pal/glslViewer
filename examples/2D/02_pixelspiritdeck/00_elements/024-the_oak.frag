@@ -6,12 +6,12 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
+uniform float u_time;
 
 #include "../lib/fill.glsl"
 #include "../lib/stroke.glsl"
 #include "../lib/rotate.glsl"
 #include "../lib/rectSDF.glsl"
-
 void main() {
     vec3 color = vec3(0.);
     vec2 st = gl_FragCoord.xy/u_resolution;

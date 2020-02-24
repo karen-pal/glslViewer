@@ -1,6 +1,3 @@
-// Author @patriciogv - 2015
-// Title: Matrix
-
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -23,20 +20,20 @@ float randomChar(vec2 outer,vec2 inner){
 void main(){
     vec2 st = gl_FragCoord.st/u_resolution.xy;
     st.y *= u_resolution.y/u_resolution.x;
-    vec3 color = vec3(0.0);
+    vec3 color = vec3(.0);
 
     float rows = 1.0;
     // rows = 3.0;
     // rows = 12.0;
-    // rows = 24.0;
+    rows = 24.0;
     vec2 ipos = floor(st*rows);
     vec2 fpos = fract(st*rows);
 
     ipos += vec2(0.,floor(u_time*20.*random(ipos.x+1.)));
 
-    float pct = 1.0;
+    float pct = 2.0;
     pct *= randomChar(ipos,fpos);
-    // pct *= random(ipos);
+     pct *= random(ipos);
 
     color = vec3(pct);
 

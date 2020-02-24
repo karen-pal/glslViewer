@@ -6,7 +6,7 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
-
+uniform float u_time;
 #include "../lib/rectSDF.glsl"
 #include "../lib/rotate.glsl"
 #include "../lib/fill.glsl"
@@ -27,8 +27,8 @@ void main() {
     st = rotate(st,radians(-45.));
     vec2 s = vec2(1.);
     float o = .05;
-    color += flip(fill(rectSDF(st-o,s),.4),
-                  fill(rectSDF(st+o,s),.4));
+    color += flip(fill(rectSDF(sin(u_time)*st-o,s),.4),
+                  fill(rectSDF(cos(u_time)*st+o,s),.4));
     //END
     gl_FragColor = vec4(color,1.);
 }

@@ -7,6 +7,7 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
+uniform float u_time;
 
 #include "../lib/math.glsl"
 #include "../lib/fill.glsl"
@@ -34,7 +35,7 @@ void main() {
         color += fill(tri,.3);
         l += stroke(tri,.3,.03);
     }
-    color *= 1.-l;
+    color *= (1.-l)*fract(u_time);
     float c = polySDF(st,8);
     color -= stroke(c,.15,.04);
     //END
