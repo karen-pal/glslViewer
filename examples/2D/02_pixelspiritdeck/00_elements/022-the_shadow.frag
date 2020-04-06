@@ -11,6 +11,8 @@ uniform vec2 u_resolution;
 #include "../lib/rotate.glsl"
 #include "../lib/fill.glsl"
 
+uniform float u_time;
+
 void main() {
     vec3 color = vec3(0.);
     vec2 st = gl_FragCoord.xy/u_resolution;
@@ -27,8 +29,12 @@ void main() {
                 radians(45.));
     vec2 s = vec2(1.);
     color += fill(rectSDF(st-.025,s),.4);
-    color += fill(rectSDF(st+.025,s),.4);
+    color += fill(rectSDF(sin(u_time*st)+.025,s),.4);
     color *= step(.38,rectSDF(st+.025,s));
+
+    color += fill(rectSDF(st-.55,s),.6*sin(u_time))*1.5;
+    color += fill(rectSDF(st+.55,s),.6*sin(u_time))*1.5;
+    color *= step(.5*sin(u_time),rectSDF(st+.55,s));
     //END
     gl_FragColor = vec4(color,1.);
 }
