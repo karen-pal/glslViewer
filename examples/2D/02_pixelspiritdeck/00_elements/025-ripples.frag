@@ -6,6 +6,7 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
+uniform float u_time;
 
 #include "../lib/rectSDF.glsl"
 #include "../lib/rotate.glsl"
@@ -22,12 +23,13 @@ void main() {
         st.x *= u_resolution.x/u_resolution.y;
         st.x -= (u_resolution.x*.5-u_resolution.y*.5)/u_resolution.y;
     };
-    st = (st-.5)*.8+.5;
+    st *= ((st-.5)*.8+.5);
+    st *= .01;
     //START
     st = rotate(st,radians(-45.))-.08;
-    for (int i = 0; i < 4; i++) {
-        float r = rectSDF(st, vec2(1.));
-        color += stroke(r, .19, .04);
+    for (int i = 0; i < 20; i++) {
+        float r = rectSDF(fract(u_time*st), vec2(1.));
+        color += stroke(r, .19, .04*fract(sin(u_time)));
         st += .05;
     }
     //END
