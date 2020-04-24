@@ -49,13 +49,17 @@ void main() {
     color += stroke(sdf1,.9,.01*sin(u_time*.1));
 
     color += fill(sdf2,.425)*sin(u_time);
+    color += stroke(sdf2,1.5,.08*sin(u_time*.5));
+    color += stroke(sdf2,1.,.06*sin(u_time*.5));
+    color += stroke(sdf2,.8,.05*sin(u_time*.5));
     color += stroke(sdf2,.5,.05*sin(u_time*.5));
     color += stroke(sdf2,.6,.04*sin(u_time*.4));
     color += stroke(sdf2,.7,.03*sin(u_time*.3));
     color += stroke(sdf2,.7,.02*sin(u_time*.2));
     color += stroke(sdf2,.7,.01*sin(u_time*.1));
 
-    //color += fill(sdf3,.225)*sin(u_time);
+    color += stroke(sdf3,1.,.08*sin(u_time*.5));
+    color += stroke(sdf3,.8,.06*sin(u_time*.5));
     color += stroke(sdf3,.5,.05*sin(u_time*.5));
     color += stroke(sdf3,.6,.04*sin(u_time*.4));
     color += stroke(sdf3,.7,.03*sin(u_time*.3));
