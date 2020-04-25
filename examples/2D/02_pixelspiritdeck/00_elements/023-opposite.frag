@@ -24,9 +24,9 @@ void main() {
         st.x -= (u_resolution.x*.5-u_resolution.y*.5)/u_resolution.y;
     };
     //START
-    st = rotate(st,radians(-45.))*.2;
+    st = rotate(st,radians(-45.))*.1;
     vec2 s = vec2(1.);
-    float o = .5*sin(u_time);
+    float o = sin(.5*u_time);
     color += flip(fill(rectSDF(cos(u_time*st)-o,s),.6),
                   fill(rectSDF(abs(sin(u_time*st))+o,s),.7));
     //END
