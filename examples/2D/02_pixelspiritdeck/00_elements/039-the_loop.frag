@@ -1,18 +1,13 @@
-// Title: The Loop
-// Author: Patricio Gonzalez Vivo
-
-#ifdef GL_ES
-precision mediump float;
-#endif
-
-uniform vec2 u_resolution;
-
 #include "../lib/rectSDF.glsl"
 #include "../lib/rotate.glsl"
 #include "../lib/flip.glsl"
-#include "../lib/bridge.glsl"
+#include "../lib/stroke.glsl"
+vec3 bridge(vec3 c,float d,float s,float w) {
+    c *= 1.-stroke(d,s,w*2.);
+    return c + stroke(d,s,w);
+}
 
-void main() {
+void loop() {
     vec3 color = vec3(0.);
     vec2 st = gl_FragCoord.xy/u_resolution;
     st = (st-.5)*1.1912+.5;
@@ -28,10 +23,10 @@ void main() {
     st = rotate(st,radians(-45.))-.2;
     st = mix(st,.6-st,step(.5,inv));
     for (int i = 0; i < 5; i++) {
-        float r = rectSDF(st, vec2(1.));
+        float r = rectSDF(st), vec2(1.));
         float s = .25;
         s -= abs(float(i)*.1-.2);
-        color = bridge(color, r,s,.05);
+        color = bridge(color,r,s,abs(sin(u_time))*.2); //(color + r * s) * sin(u_time) ;
         st += .1;
     }
     //END
